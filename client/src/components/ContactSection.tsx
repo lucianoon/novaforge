@@ -80,7 +80,7 @@ export default function ContactSection() {
     {
       icon: <MapPin className="w-6 h-6 text-primary-400" />,
       title: "Endereço",
-      content: "Av. Paulista, 1000 - São Paulo, SP"
+      content: "Avenida Guadalajara 1612 - Macaé"
     }
   ];
   
