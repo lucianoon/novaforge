@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X, BrainCircuit } from "lucide-react";
+import { Menu, X, BrainCircuit, Sparkles, Zap, Flame } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -47,16 +47,31 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/">
               <a className="flex items-center group">
-                <div className={`flex items-center justify-center p-2 rounded-lg mr-2 transition-colors duration-300 ${
-                  scrolled ? "bg-primary-900" : "bg-primary-800/60"
-                }`}>
-                  <BrainCircuit className="h-5 w-5 text-primary-400" />
+                <div className={`relative flex items-center justify-center p-3 rounded-lg mr-3 transition-all duration-300 ${
+                  scrolled ? "bg-primary-900/80" : "bg-primary-800/70"
+                } shadow-lg group-hover:shadow-primary-600/20`}>
+                  <div className="relative z-10">
+                    <BrainCircuit className="h-7 w-7 text-primary-400" />
+                  </div>
+                  
+                  {/* Animated background elements */}
+                  <div className="absolute inset-0 overflow-hidden rounded-lg">
+                    <Sparkles className="absolute h-4 w-4 text-primary-300/20 top-0 right-0 transform -translate-y-1/4 translate-x-1/4" />
+                    <Zap className="absolute h-3 w-3 text-blue-300/20 bottom-0 left-1 transform rotate-45" />
+                    
+                    {/* Animated glow effect */}
+                    <div className="absolute w-10 h-10 rounded-full bg-gradient-to-br from-primary-400/30 to-primary-700/0 blur-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+                  </div>
                 </div>
-                <span className={`font-bold text-xl transition-colors duration-300 ${
-                  scrolled ? "text-white" : "text-white"
-                }`}>
-                  Nova<span className="text-primary-400">Forge</span>
-                </span>
+                
+                <div className="flex flex-col">
+                  <span className={`font-bold text-2xl leading-none transition-colors duration-300 ${
+                    scrolled ? "text-white" : "text-white"
+                  } tracking-tight group-hover:text-primary-300`}>
+                    Nova<span className="text-primary-400">Forge</span>
+                  </span>
+                  <span className="text-xs text-gray-400 tracking-wider">INNOVATIVE SOLUTIONS</span>
+                </div>
               </a>
             </Link>
           </div>
