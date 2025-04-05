@@ -6,7 +6,7 @@ import { revealAnimation, cardHoverAnimation, staggerContainer, staggerItem } fr
 import { 
   Brain, Code, RefreshCw, BarChart3, Bot, 
   DollarSign, Lightbulb, Database, 
-  LineChart, Workflow, ThumbsUp 
+  LineChart, Workflow, ThumbsUp, Anchor
 } from "lucide-react";
 
 const services = [
@@ -30,6 +30,13 @@ const services = [
     description: "Implantamos robôs inteligentes e processos automatizados que aprendem e se adaptam, liberando sua equipe para focar em iniciativas estratégicas.",
     badges: ["RPA", "Machine Learning", "Automação"],
     features: ["Automação de Processos", "Chatbots", "Assistentes Virtuais"],
+  },
+  {
+    icon: <Anchor className="w-10 h-10" />,
+    title: "Tecnologia Offshore",
+    description: "Soluções tecnológicas especializadas para empresas do setor offshore, incluindo sistemas de monitoramento, gestão de ativos e otimização de operações marítimas.",
+    badges: ["Offshore", "Marítimo", "O&G"],
+    features: ["Monitoramento Remoto", "Gestão de Ativos", "Otimização Operacional"],
   },
   {
     icon: <Code className="w-10 h-10" />,

@@ -1,9 +1,9 @@
 import { Link } from "wouter";
 import { FaLinkedin, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
-import { Phone, Mail, MapPin, Cpu, Brain, Rocket } from "lucide-react";
+import { Phone, Mail, MapPin, Cpu, Brain, Rocket, Anchor } from "lucide-react";
 
 type FooterItem = 
-  | { text: string; isDescription: true; href?: never; icon?: never }
+  | { text: string; isDescription?: boolean; href?: never; icon?: never }
   | { text: string; href: string; icon?: React.ReactNode }
   | { text: string; icon: React.ReactNode; href?: never };
 
@@ -42,6 +42,7 @@ export default function Footer() {
         { text: "IA Generativa", href: "#", icon: <Brain className="w-4 h-4 text-primary-400 mr-2" /> },
         { text: "Desenvolvimento de Software", href: "#", icon: <Cpu className="w-4 h-4 text-primary-400 mr-2" /> },
         { text: "Automação de Processos", href: "#", icon: <Rocket className="w-4 h-4 text-primary-400 mr-2" /> },
+        { text: "Tecnologia Offshore", href: "#", icon: <Anchor className="w-4 h-4 text-primary-400 mr-2" /> },
         { text: "Big Data & Analytics", href: "#" },
         { text: "Consultoria Tecnológica", href: "#" }
       ]
