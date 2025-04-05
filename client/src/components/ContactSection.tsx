@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, MapPin, Send, MessageSquare, Sparkles, BrainCircuit, Rocket } from "lucide-react";
-import { FaLinkedin, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 // Extend the schema with validation rules
 const contactFormSchema = insertContactFormSchema.extend({
@@ -269,21 +269,9 @@ export default function ContactSection() {
                 <motion.div className="pt-6" variants={staggerItem}>
                   <h3 className="text-lg font-medium text-white mb-3">Redes Sociais</h3>
                   <div className="flex gap-4">
-                    <a href="#" className="p-3 bg-primary-900/50 border border-primary-800 rounded-lg text-primary-400 hover:bg-primary-800 transition-colors">
-                      <span className="sr-only">LinkedIn</span>
-                      <FaLinkedin className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="p-3 bg-primary-900/50 border border-primary-800 rounded-lg text-primary-400 hover:bg-primary-800 transition-colors">
+                    <a href="https://www.instagram.com/novaforge_rj/" target="_blank" rel="noopener noreferrer" className="p-3 bg-primary-900/50 border border-primary-800 rounded-lg text-primary-400 hover:bg-primary-800 transition-colors">
                       <span className="sr-only">Instagram</span>
                       <FaInstagram className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="p-3 bg-primary-900/50 border border-primary-800 rounded-lg text-primary-400 hover:bg-primary-800 transition-colors">
-                      <span className="sr-only">Twitter</span>
-                      <FaTwitter className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="p-3 bg-primary-900/50 border border-primary-800 rounded-lg text-primary-400 hover:bg-primary-800 transition-colors">
-                      <span className="sr-only">GitHub</span>
-                      <FaGithub className="w-5 h-5" />
                     </a>
                   </div>
                 </motion.div>
