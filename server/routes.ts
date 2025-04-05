@@ -8,6 +8,21 @@ import { fromZodError } from "zod-validation-error";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
+  
+  // Rota para listar todos os formulários de contato
+  app.get('/api/contact', async (req, res) => {
+    try {
+      const forms = await storage.getAllContactForms();
+      res.status(200).json(forms);
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Erro ao buscar formulários de contato" 
+      });
+    }
+  });
+  
+  // Rota para enviar formulário de contato
   app.post('/api/contact', async (req, res) => {
     try {
       const formData = insertContactFormSchema.parse(req.body);
@@ -19,7 +34,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
       
       // Store contact form submission
-      await storage.createContactFormSubmission(contactSubmission);
+      await storage.createContactForm(contactSubmission);
       
       res.status(200).json({ success: true, message: "Form submitted successfully" });
     } catch (error) {
