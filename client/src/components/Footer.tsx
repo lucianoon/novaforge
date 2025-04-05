@@ -113,7 +113,7 @@ export default function Footer() {
                     <span className="sr-only">LinkedIn</span>
                     <FaLinkedin className="w-5 h-5" />
                   </a>
-                  <a href="#" className="w-9 h-9 bg-zinc-800 rounded-md flex items-center justify-center text-primary-400 hover:bg-primary-900 transition-colors">
+                  <a href="https://www.instagram.com/novaforge/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-zinc-800 rounded-md flex items-center justify-center text-primary-400 hover:bg-primary-900 transition-colors">
                     <span className="sr-only">Instagram</span>
                     <FaInstagram className="w-5 h-5" />
                   </a>
