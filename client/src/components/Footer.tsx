@@ -49,7 +49,7 @@ export default function Footer() {
     {
       title: "Contato",
       items: [
-        { text: "Av. Paulista, 1000 - São Paulo, SP", icon: <MapPin className="w-5 h-5 text-primary-400 mr-3 flex-shrink-0" /> },
+        { text: "Avenida Guadalajara 1612 - Macaé, RJ", icon: <MapPin className="w-5 h-5 text-primary-400 mr-3 flex-shrink-0" /> },
         { text: "(11) 1234-5678", icon: <Phone className="w-5 h-5 text-primary-400 mr-3 flex-shrink-0" /> },
         { text: "contato@novaforge.com.br", icon: <Mail className="w-5 h-5 text-primary-400 mr-3 flex-shrink-0" /> }
       ]
