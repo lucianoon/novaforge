@@ -109,10 +109,6 @@ export default function Footer() {
               
               {column.social && (
                 <div className="flex space-x-3 mt-6">
-                  <a href="#" className="w-9 h-9 bg-zinc-800 rounded-md flex items-center justify-center text-primary-400 hover:bg-primary-900 transition-colors">
-                    <span className="sr-only">LinkedIn</span>
-                    <FaLinkedin className="w-5 h-5" />
-                  </a>
                   <a href="https://www.instagram.com/novaforge_rj/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 bg-zinc-800 rounded-md flex items-center justify-center text-primary-400 hover:bg-primary-900 transition-colors">
                     <span className="sr-only">Instagram</span>
                     <FaInstagram className="w-5 h-5" />
@@ -120,10 +116,6 @@ export default function Footer() {
                   <a href="#" className="w-9 h-9 bg-zinc-800 rounded-md flex items-center justify-center text-primary-400 hover:bg-primary-900 transition-colors">
                     <span className="sr-only">Twitter</span>
                     <FaTwitter className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="w-9 h-9 bg-zinc-800 rounded-md flex items-center justify-center text-primary-400 hover:bg-primary-900 transition-colors">
-                    <span className="sr-only">GitHub</span>
-                    <FaGithub className="w-5 h-5" />
                   </a>
                 </div>
               )}
