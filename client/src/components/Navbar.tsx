@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X, BrainCircuit, Sparkles, Zap, Flame } from "lucide-react";
+import { Menu, X, BrainCircuit, Sparkles, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
@@ -46,7 +46,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link href="/">
-              <a className="flex items-center group">
+              <div className="flex items-center group cursor-pointer">
                 <div className={`relative flex items-center justify-center p-3 rounded-lg mr-3 transition-all duration-300 ${
                   scrolled ? "bg-primary-900/80" : "bg-primary-800/70"
                 } shadow-lg group-hover:shadow-primary-600/20`}>
@@ -72,7 +72,7 @@ export default function Navbar() {
                   </span>
                   <span className="text-xs text-gray-400 tracking-wider">INNOVATIVE SOLUTIONS</span>
                 </div>
-              </a>
+              </div>
             </Link>
           </div>
           

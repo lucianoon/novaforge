@@ -15,9 +15,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const forms = await storage.getAllContactForms();
       res.status(200).json(forms);
     } catch (error) {
+      console.error('Erro ao buscar formulários de contato:', error);
       res.status(500).json({ 
         success: false, 
-        message: "Erro ao buscar formulários de contato" 
+        message: "Erro ao buscar formulários de contato", 
+        error: error instanceof Error ? error.message : String(error)
       });
     }
   });
@@ -46,9 +48,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: validationError.message 
         });
       } else {
+        console.error('Erro ao processar formulário de contato:', error);
         res.status(500).json({ 
           success: false, 
-          message: "An error occurred while processing your request" 
+          message: "An error occurred while processing your request",
+          error: error instanceof Error ? error.message : String(error)
         });
       }
     }
