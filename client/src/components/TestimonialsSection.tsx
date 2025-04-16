@@ -7,36 +7,36 @@ import { revealAnimation, cardHoverAnimation, staggerContainer, staggerItem } fr
 
 const testimonials = [
   {
-    content: "A solução de IA desenvolvida pela Nova Forge transformou nossa análise de dados. Conseguimos identificar padrões que antes passavam despercebidos e implementar automações que reduziram nosso tempo de processamento em 70%.",
+    content: "A Nova Forge nos ajudou a começar nossa jornada com análise de dados. O sistema que eles desenvolveram é simples e nos ajuda a entender melhor nossos clientes. Estamos aprendendo juntos nesse novo caminho.",
     author: "Ricardo Martins",
-    position: "Diretor de Tecnologia, TechBrasil",
+    position: "Gerente de Projetos, TechBrasil",
     initials: "RM",
     rating: 5,
     industry: "Tecnologia"
   },
   {
-    content: "Implementamos a plataforma de automação cognitiva da Nova Forge e conseguimos eliminar virtualmente todos os erros manuais em nossos processos. O ROI superou todas as nossas expectativas, com retorno em apenas 4 meses.",
+    content: "Estamos dando os primeiros passos com automação de processos e a Nova Forge tem sido uma parceira paciente. Reduzimos alguns erros manuais e estamos animados com as possibilidades futuras.",
     author: "Ana Luiza Silva",
-    position: "CEO, DataInsight",
+    position: "Coordenadora, DataInsight",
     initials: "AS",
-    rating: 5,
+    rating: 4,
     industry: "Análise de Dados"
   },
   {
-    content: "O assistente virtual desenvolvido pela Nova Forge revolucionou a forma como nos comunicamos com nossos clientes. A interface intuitiva e a integração perfeita com nossos sistemas existentes fizeram toda a diferença.",
+    content: "A Nova Forge nos ajudou a implementar um sistema simples para atendimento online. É um começo importante para melhorarmos nossa comunicação com os clientes nesse momento desafiador.",
     author: "Miguel Oliveira",
-    position: "Diretor de Marketing, InovaBrasil",
+    position: "Analista de Marketing, InovaBrasil",
     initials: "MO",
     rating: 5,
     industry: "Marketing"
   },
   {
-    content: "A transformação digital conduzida pela Nova Forge nos permitiu automatizar 85% dos processos administrativos, gerando uma economia anual de mais de R$ 2 milhões e permitindo que nossa equipe se concentre em atividades estratégicas.",
+    content: "Nossa pequena empresa deu os primeiros passos na digitalização com ajuda da Nova Forge. O processo foi gradual e educativo, permitindo que nossa equipe se adaptasse às mudanças sem grandes traumas.",
     author: "Carolina Mendes",
-    position: "CFO, Construtora Horizonte",
+    position: "Proprietária, Loja Horizonte",
     initials: "CM",
-    rating: 5,
-    industry: "Construção Civil"
+    rating: 4,
+    industry: "Varejo"
   }
 ];
 
@@ -128,7 +128,7 @@ export default function TestimonialsSection() {
           transition={{ delay: 0.5 }}
         >
           <p className="text-lg text-primary-300 font-semibold">
-            Junte-se a mais de 50+ empresas que transformaram seus negócios com nossas soluções
+            Junte-se às empresas que estão dando os primeiros passos rumo à transformação digital
           </p>
         </motion.div>
       </div>

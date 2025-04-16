@@ -12,52 +12,52 @@ import {
 const services = [
   {
     icon: <Brain className="w-10 h-10" />,
-    title: "IA Generativa Avançada",
-    description: "Construímos sistemas de IA personalizados com GPT-4o, Claude e outras tecnologias avançadas para automatizar processos, analisar dados e tomar decisões inteligentes.",
-    badges: ["Transformadores", "GPT-4o", "RAG"],
-    features: ["Análise de Sentimento", "Geração de Conteúdo", "Chatbots Inteligentes"],
+    title: "Integrações com IA",
+    description: "Ajudamos você a utilizar ferramentas de IA como ChatGPT para tarefas simples do dia a dia, criando assistentes básicos que ajudam em tarefas repetitivas.",
+    badges: ["ChatGPT", "Automação", "Prompts"],
+    features: ["Suporte ao cliente", "Criação de conteúdo simples", "Rascunhos de documentos"],
   },
   {
     icon: <Database className="w-10 h-10" />,
-    title: "Big Data & Analytics",
-    description: "Extraímos insights valiosos de grandes volumes de dados com nossas ferramentas analíticas avançadas. Transforme dados em decisões de negócios estratégicas.",
-    badges: ["Data Science", "Análise Preditiva", "BI"],
-    features: ["Dashboards Interativos", "Relatórios Automatizados", "Previsões de Negócios"],
+    title: "Gestão de Dados Básica",
+    description: "Organizamos seus dados em sistemas simples que facilitam a visualização e interpretação, ajudando a tomar decisões mais embasadas e estratégicas.",
+    badges: ["Excel", "Relatórios", "Dashboards"],
+    features: ["Planilhas organizadas", "Relatórios mensais", "Visualizações simples"],
   },
   {
     icon: <Bot className="w-10 h-10" />,
-    title: "Automação Cognitiva",
-    description: "Implantamos robôs inteligentes e processos automatizados que aprendem e se adaptam, liberando sua equipe para focar em iniciativas estratégicas.",
-    badges: ["RPA", "Machine Learning", "Automação"],
-    features: ["Automação de Processos", "Chatbots", "Assistentes Virtuais"],
+    title: "Automação de Tarefas",
+    description: "Criamos pequenas automações para tarefas repetitivas que consomem o tempo da sua equipe, permitindo foco em atividades que realmente importam.",
+    badges: ["Scripts", "Automação", "Processos"],
+    features: ["Automação de emails", "Preenchimento de formulários", "Geração de relatórios"],
   },
   {
     icon: <Anchor className="w-10 h-10" />,
-    title: "Tecnologia Offshore",
-    description: "Soluções tecnológicas especializadas para empresas do setor offshore, incluindo sistemas de monitoramento, gestão de ativos e otimização de operações marítimas.",
-    badges: ["Offshore", "Marítimo", "O&G"],
-    features: ["Monitoramento Remoto", "Gestão de Ativos", "Otimização Operacional"],
+    title: "Soluções para Pequenas Empresas",
+    description: "Ferramentas digitais especialmente desenvolvidas para pequenas empresas que desejam iniciar sua jornada de transformação digital com investimento acessível.",
+    badges: ["PMEs", "Acessível", "Simples"],
+    features: ["Sites institucionais", "Sistemas básicos de cadastro", "Controle de estoque"],
   },
   {
     icon: <Code className="w-10 h-10" />,
-    title: "Desenvolvimento Ágil",
-    description: "Criamos software empresarial sob medida, desde aplicativos web e mobile até sistemas de gestão complexos com metodologias ágeis.",
-    badges: ["SaaS", "API", "Microsserviços"],
-    features: ["Desenvolvimento Web/Mobile", "Sistemas ERP", "Aplicações Cloud Native"],
+    title: "Desenvolvimento Web Básico",
+    description: "Criamos websites e aplicações web simples e funcionais que atendem às necessidades do seu negócio, com foco em usabilidade e bom desempenho.",
+    badges: ["Websites", "Landing Pages", "E-commerce"],
+    features: ["Sites responsivos", "Formulários de contato", "Integração com redes sociais"],
   },
   {
     icon: <LineChart className="w-10 h-10" />,
-    title: "Inteligência de Negócios",
-    description: "Transforme dados brutos em insights estratégicos com nossas ferramentas de BI, painéis interativos e relatórios personalizados.",
-    badges: ["Visualização", "KPIs", "Dashboards"],
-    features: ["Data Visualization", "ETL", "Relatórios Executivos"],
+    title: "Análise de Dados Simplificada",
+    description: "Transformamos dados da sua empresa em informações úteis através de relatórios e gráficos fáceis de entender, auxiliando em decisões importantes.",
+    badges: ["Relatórios", "Gráficos", "Insights"],
+    features: ["Visualização de vendas", "Análise de clientes", "Relatórios periódicos"],
   },
   {
     icon: <Workflow className="w-10 h-10" />,
-    title: "Transformação Digital",
-    description: "Acompanhamos sua empresa em toda jornada de transformação digital, da estratégia à implementação e otimização contínua.",
-    badges: ["Estratégia", "Inovação", "Otimização"],
-    features: ["Consultoria Estratégica", "Reengenharia de Processos", "Treinamento"],
+    title: "Consultoria Digital",
+    description: "Acompanhamos os primeiros passos da sua empresa no mundo digital, com suporte e orientação para implementar soluções tecnológicas de forma gradual.",
+    badges: ["Orientação", "Planejamento", "Suporte"],
+    features: ["Diagnóstico digital", "Plano de transformação", "Treinamento básico"],
   },
 ];
 
@@ -74,11 +74,11 @@ export default function ServicesSection() {
           {...revealAnimation}
         >
           <Badge variant="outline" className="text-primary-400 border-primary-700 bg-primary-900/30 mb-4">
-            Nossas soluções completas
+            Nossas soluções acessíveis
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Serviços de Tecnologia Avançada</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Tecnologia para Pequenos Negócios</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Desenvolvemos soluções tecnológicas completas para impulsionar o crescimento e a eficiência da sua empresa.
+            Soluções tecnológicas simples e acessíveis para ajudar sua empresa a dar os primeiros passos no mundo digital.
           </p>
         </motion.div>
         

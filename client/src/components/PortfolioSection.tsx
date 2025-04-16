@@ -43,12 +43,12 @@ export default function PortfolioSection() {
       title: "TechMarine Serviços Offshore",
       description: "Empresa de manutenção de equipamentos marítimos",
       industry: "Indústria Naval",
-      challenge: "Processos de manutenção ineficientes e acompanhamento manual de equipamentos, resultando em atrasos e custos elevados.",
-      solution: "Implementação de sistema de gestão digital com monitoramento em tempo real dos equipamentos, automatização de alertas preventivos e relatórios inteligentes.",
+      challenge: "Processos de manutenção manual com planilhas e dificuldade para acompanhar o histórico de equipamentos.",
+      solution: "Sistema básico de registro digital para manutenções com alertas simples para revisões programadas.",
       results: [
-        "Redução de 35% nos custos de manutenção corretiva",
-        "Aumento de 28% na disponibilidade dos equipamentos",
-        "Redução de 40% no tempo de resposta para manutenção emergencial"
+        "Melhor organização do histórico de manutenções",
+        "Redução de esquecimentos em revisões programadas",
+        "Primeiros passos para análise de dados de manutenção"
       ],
       icon: <Briefcase className="w-10 h-10" />
     },
@@ -56,25 +56,25 @@ export default function PortfolioSection() {
       title: "PixelGrow Marketing Digital",
       description: "Agência de marketing digital para pequenas empresas",
       industry: "Marketing Digital",
-      challenge: "Dificuldade em mensurar resultados de campanhas e demonstrar ROI para clientes, com análise de dados fragmentada.",
-      solution: "Desenvolvimento de dashboard personalizado com IA para análise preditiva de campanhas e recomendações automáticas de otimização.",
+      challenge: "Dificuldade em organizar resultados de campanhas e apresentar dados para os clientes de forma clara.",
+      solution: "Dashboard simples para visualização de métricas básicas e geração de relatórios mensais automatizados.",
       results: [
-        "Aumento de 65% na taxa de conversão das campanhas",
-        "Redução de 45% no tempo gasto em análise de dados",
-        "Crescimento de 87% na carteira de clientes em 6 meses"
+        "Melhor visualização dos resultados para clientes",
+        "Economia de tempo na geração de relatórios",
+        "Base para futuras análises mais detalhadas"
       ],
       icon: <TrendingUp className="w-10 h-10" />
     },
     {
       title: "AutoClinic Serviços Automotivos",
-      description: "Oficina mecânica especializada em veículos importados",
+      description: "Oficina mecânica de bairro com atendimento personalizado",
       industry: "Automotivo",
-      challenge: "Agenda desorganizada, dificuldade no diagnóstico preciso e baixa fidelização de clientes.",
-      solution: "Sistema integrado de agendamento online, diagnóstico assistido por IA e programa de fidelidade automatizado.",
+      challenge: "Controle de agendamentos em papel e dificuldade em manter histórico de clientes e veículos.",
+      solution: "Sistema simples de agendamento digital e cadastro de clientes com histórico de serviços.",
       results: [
-        "Redução de 25% no tempo de diagnóstico de problemas",
-        "Aumento de 52% na taxa de retorno de clientes",
-        "Crescimento de 38% no faturamento anual"
+        "Redução de conflitos de horários",
+        "Histórico de serviços por veículo facilmente acessível",
+        "Melhoria na comunicação com clientes via notificações"
       ],
       icon: <Award className="w-10 h-10" />
     }
@@ -93,9 +93,9 @@ export default function PortfolioSection() {
           <Badge variant="outline" className="bg-primary-900/20 text-primary-400 border-primary-700 mb-4">
             Casos de Sucesso
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Microempresas Transformadas</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Primeiros Passos Digitais</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Conheça alguns exemplos de como nossas soluções impulsionaram o crescimento e eficiência de negócios como o seu.
+            Conheça alguns casos de empresas que iniciaram sua jornada digital com nosso apoio nesse momento desafiador.
           </p>
         </div>
         
