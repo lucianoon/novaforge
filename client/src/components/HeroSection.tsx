@@ -20,15 +20,15 @@ export default function HeroSection() {
           >
             <div className="flex items-center gap-2 mb-4 bg-primary-900/50 w-fit px-4 py-2 rounded-full border border-primary-700/50">
               <Sparkles className="w-5 h-5 text-primary-400" />
-              <span className="text-sm font-medium text-primary-200">Impulsionando o futuro com IA avançada</span>
+              <span className="text-sm font-medium text-primary-200">Tecnologia acessível para pequenos negócios</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300">
-              Revolucionando empresas com <span className="text-primary-400">inteligência artificial</span>
+              Dando os primeiros passos com <span className="text-primary-400">tecnologia digital</span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
-              Criamos soluções personalizadas de IA, automação e software empresarial que impulsionam eficiência, inovação e crescimento para o seu negócio.
+              Ajudamos pequenas e médias empresas a iniciar sua jornada digital com soluções simples e acessíveis, melhorando gradualmente seus processos de negócio.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
@@ -36,19 +36,19 @@ export default function HeroSection() {
                 <div className="bg-primary-800 p-1.5 rounded-md">
                   <Brain className="w-4 h-4 text-primary-300" />
                 </div>
-                <span>IA Generativa</span>
+                <span>Assistentes de IA</span>
               </div>
               <div className="flex items-center gap-2 text-sm font-medium text-white/90">
                 <div className="bg-primary-800 p-1.5 rounded-md">
                   <Cpu className="w-4 h-4 text-primary-300" />
                 </div>
-                <span>Automação Avançada</span>
+                <span>Automação Básica</span>
               </div>
               <div className="flex items-center gap-2 text-sm font-medium text-white/90">
                 <div className="bg-primary-800 p-1.5 rounded-md">
                   <Sparkles className="w-4 h-4 text-primary-300" />
                 </div>
-                <span>Soluções Empresariais</span>
+                <span>Primeiros Passos Digitais</span>
               </div>
             </div>
             
@@ -95,7 +95,7 @@ export default function HeroSection() {
               <div className="absolute -bottom-4 -right-4 bg-primary-800/90 p-4 rounded-xl shadow-lg border border-primary-700 backdrop-blur-sm z-20">
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-xs font-medium text-primary-100">IA em Tempo Real</span>
+                  <span className="text-xs font-medium text-primary-100">Tecnologia Acessível</span>
                 </div>
               </div>
             </div>

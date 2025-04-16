@@ -9,43 +9,43 @@ import { Badge } from "@/components/ui/badge";
 const benefits = [
   {
     icon: <BrainCircuit className="w-10 h-10" />,
-    title: "IA de Última Geração",
-    description: "Implementamos GPT-4o, Claude e outros modelos de IA para automatizar decisões complexas e extrair insights valiosos de seus dados."
+    title: "Primeiros passos com IA",
+    description: "Ajudamos você a entender e começar a utilizar ferramentas de IA como ChatGPT para melhorar gradualmente seus processos de negócio."
   },
   {
     icon: <Zap className="w-10 h-10" />,
-    title: "Alta Performance",
-    description: "Nossas soluções são otimizadas para entregar velocidade e eficiência excepcionais, melhorando significativamente seus processos empresariais."
+    title: "Soluções práticas",
+    description: "Desenvolvemos ferramentas simples e práticas que trazem resultados reais e imediatos para o dia a dia da sua empresa."
   },
   {
     icon: <Shield className="w-10 h-10" />,
-    title: "Segurança Garantida",
-    description: "Implementamos as melhores práticas de segurança para proteger seus dados e sistemas contra ameaças externas e internas."
+    title: "Segurança básica",
+    description: "Implementamos práticas essenciais de segurança digital para proteger os dados da sua empresa contra os riscos mais comuns."
   },
   {
     icon: <CloudCog className="w-10 h-10" />,
-    title: "Computação em Nuvem",
-    description: "Utilizamos o poder da nuvem para criar soluções escaláveis, seguras e acessíveis em qualquer lugar, a qualquer momento."
+    title: "Recursos na nuvem",
+    description: "Utilizamos serviços em nuvem acessíveis para pequenas empresas, eliminando a necessidade de grandes investimentos em infraestrutura."
   },
   {
     icon: <Network className="w-10 h-10" />,
-    title: "Integração Total",
-    description: "Conectamos todos os seus sistemas e dados em uma solução unificada, eliminando silos e proporcionando uma visão holística."
+    title: "Conexão de sistemas",
+    description: "Ajudamos a conectar seus diferentes sistemas e planilhas para reduzir a duplicação de trabalho e organizar suas informações."
   },
   {
     icon: <LineChart className="w-10 h-10" />,
-    title: "Insights Avançados",
-    description: "Transforme seus dados em insights acionáveis com nossa análise avançada, visualizações intuitivas e relatórios personalizados."
+    title: "Visualização de dados",
+    description: "Criamos relatórios e gráficos simples que ajudam a entender melhor o desempenho do seu negócio e tomar decisões mais informadas."
   },
   {
     icon: <Compass className="w-10 h-10" />,
-    title: "Orientado a Resultados",
-    description: "Focamos em métricas de negócios reais e resultados mensuráveis, garantindo que nossas soluções gerem valor tangível para sua empresa."
+    title: "Foco no essencial",
+    description: "Priorizamos o que realmente importa para seu negócio, implementando soluções que resolvem problemas concretos do seu dia a dia."
   },
   {
     icon: <Cpu className="w-10 h-10" />,
-    title: "Automação Inteligente",
-    description: "Automatizamos processos repetitivos e tarefas complexas, liberando sua equipe para se concentrar em iniciativas estratégicas."
+    title: "Automação simples",
+    description: "Automatizamos tarefas repetitivas básicas para economizar tempo da sua equipe, começando pelas que trazem benefícios imediatos."
   }
 ];
 
@@ -77,7 +77,7 @@ export default function BenefitsSection() {
           </h2>
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Combinamos expertise técnica com profundo entendimento dos desafios empresariais para entregar soluções que realmente fazem a diferença.
+            Oferecemos um caminho gradual e acessível para empresas que desejam iniciar sua jornada digital com soluções simples e eficazes.
           </p>
         </motion.div>
         
@@ -125,7 +125,7 @@ export default function BenefitsSection() {
               <Sparkles className="w-6 h-6" />
             </div>
             <p className="text-white text-sm">
-              <span className="font-semibold">Consultoria gratuita:</span> Entre em contato para uma análise inicial de como podemos impulsionar sua empresa com nossas soluções de IA e automação.
+              <span className="font-semibold">Conversa inicial gratuita:</span> Vamos conhecer seu negócio e entender juntos quais são os primeiros passos possíveis para sua jornada digital.
             </p>
           </motion.div>
         </div>
