@@ -23,8 +23,9 @@ export default function HeroSection() {
               <span className="text-sm font-medium text-primary-200">Tecnologia acessível para pequenos negócios</span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300">
-              Dando os primeiros passos com <span className="text-primary-400">tecnologia digital</span>
+            <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-6 tracking-wide">
+              Dando os primeiros passos <br />
+              com <span className="text-primary-400">tecnologia digital</span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
