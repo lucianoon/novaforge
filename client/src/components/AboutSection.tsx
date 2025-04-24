@@ -5,23 +5,23 @@ import { CheckCircle, Star, Clock, HeartHandshake } from "lucide-react";
 
 const stats = [
   { 
-    value: "5+", 
+    value: "2+", 
     label: "Anos de Experiência",
     icon: <Clock className="w-5 h-5 text-primary-400" />
   },
   { 
-    value: "100+", 
+    value: "30+", 
     label: "Projetos Concluídos",
     icon: <CheckCircle className="w-5 h-5 text-primary-400" />
   },
   { 
-    value: "50+", 
-    label: "Clientes Satisfeitos",
+    value: "20+", 
+    label: "Clientes Atendidos",
     icon: <HeartHandshake className="w-5 h-5 text-primary-400" />
   },
   { 
-    value: "24/7", 
-    label: "Suporte Técnico",
+    value: "Seg-Sex", 
+    label: "Atendimento Comercial",
     icon: <Star className="w-5 h-5 text-primary-400" />
   },
 ];
@@ -54,7 +54,7 @@ export default function AboutSection() {
               <div className="absolute -bottom-5 -right-5 bg-zinc-800 border border-zinc-700 p-3 rounded-lg shadow-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-primary-500 animate-pulse"></div>
-                  <span className="font-mono text-xs text-white">AI-Powered Solutions</span>
+                  <span className="font-mono text-xs text-white">Soluções Digitais</span>
                 </div>
               </div>
             </div>
@@ -72,13 +72,13 @@ export default function AboutSection() {
             
             <div className="text-lg text-gray-300 space-y-6">
               <p>
-                A Nova Forge nasceu da paixão por tecnologia e da crença de que toda empresa merece acesso às soluções digitais mais avançadas, independentemente do tamanho ou setor.
+                A Nova Forge foi criada para atender pequenas e médias empresas que desejam dar seus primeiros passos no mundo digital com soluções acessíveis e práticas.
               </p>
               <p>
-                Nossa equipe é formada por especialistas em <span className="text-primary-400 font-medium">inteligência artificial</span>, <span className="text-primary-400 font-medium">desenvolvimento de software</span> e <span className="text-primary-400 font-medium">automação</span>, unidos pelo compromisso de entregar soluções que realmente fazem a diferença para nossos clientes.
+                Nossa equipe combina conhecimentos em <span className="text-primary-400 font-medium">tecnologias digitais</span>, <span className="text-primary-400 font-medium">desenvolvimento web</span> e <span className="text-primary-400 font-medium">ferramentas de produtividade</span> para criar soluções simples que resolvem problemas reais do dia a dia das empresas.
               </p>
               <p>
-                Utilizamos as mais recentes tecnologias como GPT-4o, modelos de visão computacional e aprendizado de máquina para criar soluções que não apenas resolvem problemas atuais, mas também preparam sua empresa para o futuro.
+                Entendemos que cada negócio tem seu próprio ritmo de adaptação tecnológica. Por isso, oferecemos um acompanhamento personalizado, começando com pequenos passos que trazem resultados concretos e construindo gradualmente conforme sua empresa evolui.
               </p>
             </div>
             
