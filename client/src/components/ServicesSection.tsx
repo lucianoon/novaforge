@@ -4,60 +4,60 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { revealAnimation, cardHoverAnimation, staggerContainer, staggerItem } from "@/lib/animations";
 import { 
-  Brain, Code, RefreshCw, BarChart3, Bot, 
+  Brain, Code, RefreshCw, BarChart3, Bot, Scissors,
   DollarSign, Lightbulb, Database, 
   LineChart, Workflow, ThumbsUp, Anchor
 } from "lucide-react";
 
 const services = [
   {
-    icon: <Brain className="w-10 h-10" />,
-    title: "Integrações com IA",
-    description: "Ajudamos você a utilizar ferramentas de IA como ChatGPT para tarefas simples do dia a dia, criando assistentes básicos que ajudam em tarefas repetitivas.",
-    badges: ["ChatGPT", "Automação", "Prompts"],
-    features: ["Suporte ao cliente", "Criação de conteúdo simples", "Rascunhos de documentos"],
+    icon: <Workflow className="w-10 h-10" />,
+    title: "Soluções para Hotelaria",
+    description: "Sistemas de gestão para pousadas e hotéis que facilitam reservas, check-in/check-out e gerenciamento de quartos, elevando a experiência dos hóspedes.",
+    badges: ["Pousadas", "Hotéis", "Reservas"],
+    features: ["Sistema de reservas online", "Gestão de ocupação", "Avaliações de hóspedes"],
   },
   {
-    icon: <Database className="w-10 h-10" />,
-    title: "Gestão de Dados Básica",
-    description: "Organizamos seus dados em sistemas simples que facilitam a visualização e interpretação, ajudando a tomar decisões mais embasadas e estratégicas.",
-    badges: ["Excel", "Relatórios", "Dashboards"],
-    features: ["Planilhas organizadas", "Relatórios mensais", "Visualizações simples"],
+    icon: <Brain className="w-10 h-10" />,
+    title: "Clínicas Médicas",
+    description: "Ferramentas digitais para otimizar a agenda de consultas, prontuários de pacientes e relacionamento com convênios, reduzindo a burocracia do dia a dia.",
+    badges: ["Agendamento", "Prontuário", "Pacientes"],
+    features: ["Agenda médica digital", "Histórico de pacientes", "Lembretes automáticos"],
   },
   {
     icon: <Bot className="w-10 h-10" />,
-    title: "Automação de Tarefas",
-    description: "Criamos pequenas automações para tarefas repetitivas que consomem o tempo da sua equipe, permitindo foco em atividades que realmente importam.",
-    badges: ["Scripts", "Automação", "Processos"],
-    features: ["Automação de emails", "Preenchimento de formulários", "Geração de relatórios"],
+    title: "Consultórios Odontológicos",
+    description: "Soluções específicas para dentistas gerenciarem seus atendimentos, histórico de tratamentos e controle financeiro com facilidade e precisão.",
+    badges: ["Odontologia", "Pacientes", "Tratamentos"],
+    features: ["Agenda integrada", "Ficha odontológica digital", "Controle de procedimentos"],
+  },
+  {
+    icon: <Scissors className="w-10 h-10" />,
+    title: "Barbearias",
+    description: "Sistemas para barbearias modernizarem seu atendimento com agendamento online, fidelização de clientes e controle financeiro simplificado.",
+    badges: ["Agenda", "Clientes", "Serviços"],
+    features: ["Reserva de horários online", "Histórico de clientes", "Cadastro de serviços"],
   },
   {
     icon: <Anchor className="w-10 h-10" />,
-    title: "Soluções para Pequenas Empresas",
-    description: "Ferramentas digitais especialmente desenvolvidas para pequenas empresas que desejam iniciar sua jornada de transformação digital com investimento acessível.",
-    badges: ["PMEs", "Acessível", "Simples"],
-    features: ["Sites institucionais", "Sistemas básicos de cadastro", "Controle de estoque"],
-  },
-  {
-    icon: <Code className="w-10 h-10" />,
-    title: "Desenvolvimento Web Básico",
-    description: "Criamos websites e aplicações web simples e funcionais que atendem às necessidades do seu negócio, com foco em usabilidade e bom desempenho.",
-    badges: ["Websites", "Landing Pages", "E-commerce"],
-    features: ["Sites responsivos", "Formulários de contato", "Integração com redes sociais"],
+    title: "Oficinas Mecânicas",
+    description: "Ferramentas para gerenciar ordens de serviço, peças, histórico de manutenção de veículos e comunicação eficiente com os clientes.",
+    badges: ["Veículos", "Serviços", "Peças"],
+    features: ["Ordens de serviço digitais", "Controle de estoque", "Histórico de manutenções"],
   },
   {
     icon: <LineChart className="w-10 h-10" />,
-    title: "Análise de Dados Simplificada",
-    description: "Transformamos dados da sua empresa em informações úteis através de relatórios e gráficos fáceis de entender, auxiliando em decisões importantes.",
-    badges: ["Relatórios", "Gráficos", "Insights"],
-    features: ["Visualização de vendas", "Análise de clientes", "Relatórios periódicos"],
+    title: "Marketing Digital Local",
+    description: "Estratégias de presença online para negócios locais serem encontrados facilmente por clientes na região, com foco em resultados práticos.",
+    badges: ["SEO Local", "Google", "Redes Sociais"],
+    features: ["Perfil Google Meu Negócio", "Presença nas redes sociais", "Avaliações online"],
   },
   {
-    icon: <Workflow className="w-10 h-10" />,
-    title: "Consultoria Digital",
-    description: "Acompanhamos os primeiros passos da sua empresa no mundo digital, com suporte e orientação para implementar soluções tecnológicas de forma gradual.",
-    badges: ["Orientação", "Planejamento", "Suporte"],
-    features: ["Diagnóstico digital", "Plano de transformação", "Treinamento básico"],
+    icon: <Database className="w-10 h-10" />,
+    title: "Gestão de Relacionamento",
+    description: "Sistemas simples para manter contato com clientes, entender suas preferências e criar ações de fidelização que geram retorno frequente.",
+    badges: ["CRM", "Fidelização", "Comunicação"],
+    features: ["Histórico de interações", "Campanhas por WhatsApp", "Aniversários e datas especiais"],
   },
 ];
 
@@ -74,11 +74,11 @@ export default function ServicesSection() {
           {...revealAnimation}
         >
           <Badge variant="outline" className="text-primary-400 border-primary-700 bg-primary-900/30 mb-4">
-            Nossas soluções acessíveis
+            Soluções por segmento
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Tecnologia para Pequenos Negócios</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Especialistas em negócios locais</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Soluções tecnológicas simples e acessíveis para ajudar sua empresa a dar os primeiros passos no mundo digital.
+            Desenvolvemos sistemas personalizados para as necessidades específicas de pousadas, clínicas, barbearias e oficinas, resolvendo problemas reais do seu negócio.
           </p>
         </motion.div>
         

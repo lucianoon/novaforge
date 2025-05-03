@@ -25,7 +25,10 @@ const itemVariants: Variants = {
     }
   }
 };
-import { Briefcase, TrendingUp, Award, BarChart3, Users, CheckCircle } from "lucide-react";
+import { 
+  Briefcase, TrendingUp, Award, BarChart3, Users, CheckCircle,
+  Hotel, Stethoscope, Tooth, Scissors, Wrench, MapPin
+} from "lucide-react";
 
 type PortfolioItem = {
   title: string;

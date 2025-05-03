@@ -20,16 +20,16 @@ export default function HeroSection() {
           >
             <div className="flex items-center gap-2 mb-4 bg-primary-900/50 w-fit px-4 py-2 rounded-full border border-primary-700/50">
               <Sparkles className="w-5 h-5 text-primary-400" />
-              <span className="text-sm font-medium text-primary-200">Tecnologia acessível para pequenos negócios</span>
+              <span className="text-sm font-medium text-primary-200">Soluções para negócios locais e serviços especializados</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight mb-6 tracking-wide">
-              Dando os primeiros passos <br />
-              com <span className="text-primary-400">tecnologia digital</span>
+              Transformação digital para <br />
+              <span className="text-primary-400">seu negócio local</span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
-              Ajudamos pequenas e médias empresas a iniciar sua jornada digital com soluções simples e acessíveis, melhorando gradualmente seus processos de negócio.
+              Soluções tecnológicas acessíveis e personalizadas para pousadas, hotéis, clínicas médicas, consultórios odontológicos, barbearias e oficinas mecânicas.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
@@ -37,19 +37,19 @@ export default function HeroSection() {
                 <div className="bg-primary-800 p-1.5 rounded-md">
                   <Brain className="w-4 h-4 text-primary-300" />
                 </div>
-                <span>Assistentes de IA</span>
+                <span>Agendamento Online</span>
               </div>
               <div className="flex items-center gap-2 text-sm font-medium text-white/90">
                 <div className="bg-primary-800 p-1.5 rounded-md">
                   <Cpu className="w-4 h-4 text-primary-300" />
                 </div>
-                <span>Automação Básica</span>
+                <span>Gestão de Clientes</span>
               </div>
               <div className="flex items-center gap-2 text-sm font-medium text-white/90">
                 <div className="bg-primary-800 p-1.5 rounded-md">
                   <Sparkles className="w-4 h-4 text-primary-300" />
                 </div>
-                <span>Primeiros Passos Digitais</span>
+                <span>Presença Digital</span>
               </div>
             </div>
             
