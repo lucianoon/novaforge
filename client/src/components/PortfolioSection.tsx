@@ -27,7 +27,7 @@ const itemVariants: Variants = {
 };
 import { 
   Briefcase, TrendingUp, Award, BarChart3, Users, CheckCircle,
-  Hotel, Stethoscope, Tooth, Scissors, Wrench, MapPin
+  Hotel, Stethoscope, Scissors, Wrench, MapPin, HeartPulse
 } from "lucide-react";
 
 type PortfolioItem = {
@@ -43,43 +43,82 @@ type PortfolioItem = {
 export default function PortfolioSection() {
   const portfolioItems: PortfolioItem[] = [
     {
-      title: "TechMarine Serviços Offshore",
-      description: "Empresa de manutenção de equipamentos marítimos",
-      industry: "Indústria Naval",
-      challenge: "Processos de manutenção manual com planilhas e dificuldade para acompanhar o histórico de equipamentos.",
-      solution: "Sistema básico de registro digital para manutenções com alertas simples para revisões programadas.",
+      title: "Pousada Vista Mar",
+      description: "Pousada à beira-mar com 15 quartos e acomodações personalizadas",
+      industry: "Hotelaria",
+      challenge: "Gerenciamento manual de reservas causava overbooking e conflitos de alocação, especialmente durante alta temporada.",
+      solution: "Sistema integrado de reservas online com calendário visual, pagamento antecipado e gestão de ocupação em tempo real.",
       results: [
-        "Melhor organização do histórico de manutenções",
-        "Redução de esquecimentos em revisões programadas",
-        "Primeiros passos para análise de dados de manutenção"
+        "Eliminação de casos de overbooking",
+        "Redução de 80% no tempo dedicado à gestão de reservas",
+        "Aumento de 35% nas reservas diretas sem intermediários"
       ],
-      icon: <Briefcase className="w-10 h-10" />
+      icon: <Hotel className="w-10 h-10" />
     },
     {
-      title: "PixelGrow Marketing Digital",
-      description: "Agência de marketing digital para pequenas empresas",
-      industry: "Marketing Digital",
-      challenge: "Dificuldade em organizar resultados de campanhas e apresentar dados para os clientes de forma clara.",
-      solution: "Dashboard simples para visualização de métricas básicas e geração de relatórios mensais automatizados.",
+      title: "Clínica Bem Estar",
+      description: "Clínica médica com múltiplas especialidades e convênios",
+      industry: "Saúde",
+      challenge: "Alta taxa de faltas em consultas e dificuldade em gerenciar agenda com diferentes médicos e especialidades.",
+      solution: "Sistema de agendamento integrado com lembretes automáticos via WhatsApp e confirmação simplificada pelo paciente.",
       results: [
-        "Melhor visualização dos resultados para clientes",
-        "Economia de tempo na geração de relatórios",
-        "Base para futuras análises mais detalhadas"
+        "Redução de 45% nas faltas às consultas",
+        "Melhor aproveitamento da agenda dos médicos",
+        "Aumento da satisfação dos pacientes com sistema de lembretes"
       ],
-      icon: <TrendingUp className="w-10 h-10" />
+      icon: <Stethoscope className="w-10 h-10" />
     },
     {
-      title: "AutoClinic Serviços Automotivos",
-      description: "Oficina mecânica de bairro com atendimento personalizado",
+      title: "Consultório Odontológico Dr. Santos",
+      description: "Consultório com 3 dentistas e especialidades diversas",
+      industry: "Odontologia",
+      challenge: "Gerenciamento manual de fichas de pacientes, dificuldade em acompanhar tratamentos e cobranças pendentes.",
+      solution: "Sistema digital de prontuário odontológico com registros de tratamentos, imagens e controle financeiro por paciente.",
+      results: [
+        "Recuperação de 40% em pagamentos pendentes",
+        "Melhor acompanhamento de tratamentos longos",
+        "Redução de 25% no tempo administrativo da equipe"
+      ],
+      icon: <HeartPulse className="w-10 h-10" />
+    },
+    {
+      title: "Barbearia Vintage",
+      description: "Barbearia moderna com 5 profissionais e serviços premium",
+      industry: "Estética",
+      challenge: "Gestão de agenda manual resultava em horários vazios e dificuldade de clientes agendarem com barbeiros específicos.",
+      solution: "Aplicativo de agendamento online com perfil dos profissionais, histórico do cliente e sistema de fidelidade integrado.",
+      results: [
+        "Ocupação quase total da agenda em horários premium",
+        "Redução de 90% em cancelamentos de última hora",
+        "Aumento de 50% no ticket médio por cliente"
+      ],
+      icon: <Scissors className="w-10 h-10" />
+    },
+    {
+      title: "AutoMecânica Silva",
+      description: "Oficina mecânica familiar com foco em atendimento personalizado",
       industry: "Automotivo",
-      challenge: "Controle de agendamentos em papel e dificuldade em manter histórico de clientes e veículos.",
-      solution: "Sistema simples de agendamento digital e cadastro de clientes com histórico de serviços.",
+      challenge: "Controle de ordens de serviço em papel, dificuldade em encontrar histórico de veículos e perda de informações importantes.",
+      solution: "Sistema digital de gerenciamento de ordens de serviço com registro fotográfico e histórico completo por veículo.",
       results: [
-        "Redução de conflitos de horários",
-        "Histórico de serviços por veículo facilmente acessível",
-        "Melhoria na comunicação com clientes via notificações"
+        "Acesso rápido ao histórico completo de cada veículo",
+        "Melhor comunicação com clientes sobre status dos serviços",
+        "Redução de 30% em retrabalhos por diagnósticos incompletos"
       ],
-      icon: <Award className="w-10 h-10" />
+      icon: <Wrench className="w-10 h-10" />
+    },
+    {
+      title: "Marketing Local Consultoria",
+      description: "Consultoria especializada em presença digital para negócios locais",
+      industry: "Marketing",
+      challenge: "Empresas locais com dificuldade de competir com grandes redes e aparecer para clientes nas buscas da região.",
+      solution: "Estratégia integrada de SEO local, gestão de perfil no Google Meu Negócio e sistema de incentivo a avaliações positivas.",
+      results: [
+        "Aumento médio de 85% nas buscas locais",
+        "Crescimento de 4.3 para 4.8 na média de avaliações",
+        "Domínio na primeira página para buscas locais relevantes"
+      ],
+      icon: <MapPin className="w-10 h-10" />
     }
   ];
 
@@ -94,11 +133,11 @@ export default function PortfolioSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <Badge variant="outline" className="bg-primary-900/20 text-primary-400 border-primary-700 mb-4">
-            Casos de Sucesso
+            Casos de Sucesso por Segmento
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Primeiros Passos Digitais</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Soluções para Negócios Locais</h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Conheça alguns casos de empresas que iniciaram sua jornada digital com nosso apoio nesse momento desafiador.
+            Conheça histórias reais de pousadas, clínicas, barbearias e oficinas que transformaram seus negócios com nossas soluções personalizadas.
           </p>
         </div>
         
