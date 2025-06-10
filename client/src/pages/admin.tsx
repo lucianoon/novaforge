@@ -6,11 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ShieldCheck, User, Mail, Phone, Building, MessageSquare, Clock, ChevronDown, ChevronUp, Search } from "lucide-react";
+import { ShieldCheck, User, Mail, Phone, Building, MessageSquare, Clock, ChevronDown, ChevronUp, Search, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { queryClient } from "@/lib/queryClient";
 
 // Tipo para os formulários de contato
 type ContactForm = {
@@ -26,10 +27,55 @@ type ContactForm = {
 export default function AdminPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState("");
   
-  // Buscar formulários de contato
+  // Simple authentication
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simple password check - in production, this should be more secure
+    if (password === "admin123") {
+      setIsAuthenticated(true);
+      setAuthError("");
+      localStorage.setItem("adminToken", "admin123");
+    } else {
+      setAuthError("Senha incorreta");
+    }
+  };
+
+  // Check for existing token on load
+  useState(() => {
+    const token = localStorage.getItem("adminToken");
+    if (token === "admin123") {
+      setIsAuthenticated(true);
+    }
+  });
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("adminToken");
+    setPassword("");
+  };
+  
+  // Buscar formulários de contato com token de autenticação
   const { data: contactForms, isLoading, isError, refetch } = useQuery<ContactForm[]>({
     queryKey: ['/api/contact'],
+    enabled: isAuthenticated,
+    queryFn: async () => {
+      const response = await fetch('/api/contact', {
+        headers: {
+          'Authorization': `Bearer admin123`,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch contact forms');
+      }
+      
+      return response.json();
+    },
   });
   
   // Função para formatar data
@@ -63,6 +109,51 @@ export default function AdminPage() {
     setExpandedId(expandedId === id ? null : id);
   };
   
+  // Login screen for non-authenticated users
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md"
+        >
+          <Card className="bg-zinc-900 border-zinc-800 shadow-xl">
+            <CardHeader className="text-center">
+              <div className="flex justify-center mb-4">
+                <Lock className="h-12 w-12 text-primary-400" />
+              </div>
+              <CardTitle className="text-2xl">Acesso Administrativo</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div>
+                  <Input
+                    type="password"
+                    placeholder="Digite a senha de administrador"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="bg-zinc-800 border-zinc-700 focus:border-primary-500"
+                    required
+                  />
+                </div>
+                {authError && (
+                  <div className="text-red-400 text-sm text-center">
+                    {authError}
+                  </div>
+                )}
+                <Button type="submit" className="w-full bg-primary-600 hover:bg-primary-700">
+                  Entrar
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <div className="container mx-auto py-8 px-4">
@@ -71,9 +162,14 @@ export default function AdminPage() {
             <ShieldCheck className="h-8 w-8 text-primary-400" />
             <h1 className="text-2xl font-bold">Painel de Administração</h1>
           </div>
-          <Button onClick={() => window.location.href = "/"} variant="outline" className="border-primary-600 text-primary-400 hover:bg-primary-950">
-            Voltar para o site
-          </Button>
+          <div className="flex gap-2">
+            <Button onClick={handleLogout} variant="outline" className="border-red-600 text-red-400 hover:bg-red-950">
+              Sair
+            </Button>
+            <Button onClick={() => window.location.href = "/"} variant="outline" className="border-primary-600 text-primary-400 hover:bg-primary-950">
+              Voltar para o site
+            </Button>
+          </div>
         </div>
         
         <motion.div
