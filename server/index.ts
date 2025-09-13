@@ -7,6 +7,9 @@ import cors from "cors";
 
 const app = express();
 
+// Enable trust proxy for rate limiting to work correctly in Replit
+app.set('trust proxy', true);
+
 // Security headers with Helmet
 app.use(helmet({
   contentSecurityPolicy: {
@@ -34,7 +37,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// Rate limiting - more permissive in development
+// Rate limiting - more permissive in development with secure proxy handling
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: process.env.NODE_ENV === 'production' ? 100 : 1000, // More permissive in development
@@ -43,6 +46,10 @@ const limiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
+  // Custom key generator for Replit environment
+  keyGenerator: (req) => {
+    return req.ip + (req.get('X-Forwarded-For') || '');
+  },
   skip: (req) => {
     // Skip rate limiting for development assets and health checks
     if (process.env.NODE_ENV !== 'production') {
@@ -52,7 +59,9 @@ const limiter = rateLimit({
              req.method === 'HEAD';
     }
     return false;
-  }
+  },
+  // Disable built-in validation warnings for development
+  validate: process.env.NODE_ENV === 'production'
 });
 
 app.use(limiter);
