@@ -13,7 +13,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Simple authentication middleware for admin routes
   const requireAuth = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
-    const adminKey = process.env.ADMIN_KEY || 'admin123'; // Should be set as environment variable
+    const adminKey = process.env.ADMIN_KEY;
+
+    if (!adminKey) {
+      return res.status(500).json({
+        success: false,
+        message: "Configuração de autenticação ausente"
+      });
+    }
     
     if (!authHeader || authHeader !== `Bearer ${adminKey}`) {
       return res.status(401).json({ 
@@ -69,7 +76,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   ];
 
   // Rota para enviar formulário de contato
-  app.post('/api/contact', contactValidation, async (req, res) => {
+  app.post('/api/contact', contactValidation, async (req: Request, res: Response) => {
     try {
       // Check for validation errors
       const errors = validationResult(req);
