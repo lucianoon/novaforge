@@ -26,9 +26,6 @@ export default function Home() {
       </main>
       
       <Footer />
-      
-      {/* Add Replit Badge */}
-      <script type="text/javascript" src="https://replit.com/public/js/replit-badge-v3.js"></script>
     </div>
   );
 }

@@ -30,7 +30,7 @@ app.use(helmet({
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://yourapp.replit.app'] // Replace with your actual domain
+    ? ['https://yourdomain.com'] // Replace with your actual domain
     : ['http://localhost:5000', 'http://127.0.0.1:5000'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

@@ -1,4 +1,3 @@
-[🚀 Nova Forge - Plataforma de Consultoria em Tecnologia.md](https://github.com/user-attachments/files/22914596/Nova.Forge.-.Plataforma.de.Consultoria.em.Tecnologia.md)
 # 🚀 Nova Forge - Plataforma de Consultoria em Tecnologia
 
 Plataforma de consultoria em tecnologia empresarial focada em transformação digital para pequenos e médios negócios locais no Brasil.
@@ -84,7 +83,6 @@ novaforge/
 │   └── middleware/        # Middlewares
 ├── shared/                # Código compartilhado
 │   └── schema.ts          # Schemas Zod
-├── attached_assets/       # Assets estáticos
 └── package.json           # Dependências
 ```
 
