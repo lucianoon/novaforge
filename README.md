@@ -145,6 +145,21 @@ npm run db:push      # Aplica migrações do banco
 npm run db:studio    # Abre Drizzle Studio (GUI do banco)
 ```
 
+## 🧪 Testes
+
+O projeto usa [Vitest](https://vitest.dev/) para testes automatizados:
+
+```bash
+npm test             # Executa a suíte de testes
+```
+
+Cobertura atual:
+
+- ✅ **Schemas Zod** (`shared/schema.ts`) - casos válidos e inválidos
+- ✅ **Rotas da API** (`server/routes.ts`) - validação, autenticação e erros, com storage mockado (sem banco real)
+
+Os testes ficam em `tests/` e rodam automaticamente no CI a cada push e pull request.
+
 ## 🎨 Personalização
 
 ### Tema e Cores
