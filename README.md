@@ -120,7 +120,7 @@ Variáveis necessárias:
 DATABASE_URL=postgresql://user:password@host:5432/database
 NODE_ENV=development
 PORT=3000
-ADMIN_TOKEN=seu_token_secreto
+ADMIN_KEY=seu_token_secreto
 ```
 
 4. Execute as migrações do banco:
@@ -140,9 +140,10 @@ A aplicação estará disponível em `http://localhost:5000`
 ```bash
 npm run dev          # Inicia servidor de desenvolvimento
 npm run build        # Build de produção
-npm run preview      # Preview do build de produção
+npm run start        # Sobe o build de produção
+npm run check        # Type-check com tsc
+npm test             # Executa a suíte de testes
 npm run db:push      # Aplica migrações do banco
-npm run db:studio    # Abre Drizzle Studio (GUI do banco)
 ```
 
 ## 🧪 Testes
