@@ -6,6 +6,7 @@ Plataforma de consultoria em tecnologia empresarial focada em transformação di
 [![React](https://img.shields.io/badge/React-18-61DAFB.svg)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-Express-green.svg)](https://nodejs.org/)
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791.svg)](https://www.postgresql.org/)
+[![CI](https://github.com/lucianoon/novaforge/actions/workflows/ci.yml/badge.svg)](https://github.com/lucianoon/novaforge/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## 📋 Sobre o Projeto
@@ -281,4 +282,3 @@ Para dúvidas ou suporte:
 ⭐ Se este projeto foi útil para você, considere dar uma estrela!
 
 **Desenvolvido com ❤️ para transformar negócios locais através da tecnologia**
-
