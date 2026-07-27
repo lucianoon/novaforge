@@ -45,18 +45,72 @@ afterEach(() => {
   delete process.env.ADMIN_KEY;
 });
 
-describe("GET /api/contact", () => {
-  it("returns 500 when ADMIN_KEY is not configured", async () => {
+describe("autenticação por sessão", () => {
+  it("recusa o login quando ADMIN_KEY não está configurada", async () => {
     delete process.env.ADMIN_KEY;
 
-    const res = await request(app).get("/api/contact");
+    const res = await request(app).post("/api/admin/login").send({ password: "qualquer" });
 
     expect(res.status).toBe(500);
     expect(res.body.success).toBe(false);
-    expect(mockStorage.getAllContactForms).not.toHaveBeenCalled();
   });
 
-  it("returns 401 without an Authorization header", async () => {
+  it("recusa senha errada e não cria sessão", async () => {
+    const agent = request.agent(app);
+
+    const login = await agent.post("/api/admin/login").send({ password: "errada" });
+    expect(login.status).toBe(401);
+
+    const sess = await agent.get("/api/admin/session");
+    expect(sess.body.authenticated).toBe(false);
+  });
+
+  it("recusa corpo sem senha", async () => {
+    const res = await request(app).post("/api/admin/login").send({});
+    expect(res.status).toBe(401);
+  });
+
+  it("aceita a senha correta e passa a reportar sessão ativa", async () => {
+    const agent = request.agent(app);
+
+    const login = await agent.post("/api/admin/login").send({ password: ADMIN_KEY });
+    expect(login.status).toBe(200);
+    expect(login.body.success).toBe(true);
+
+    const sess = await agent.get("/api/admin/session");
+    expect(sess.body.authenticated).toBe(true);
+  });
+
+  it("não devolve o segredo em nenhuma resposta", async () => {
+    const agent = request.agent(app);
+    const login = await agent.post("/api/admin/login").send({ password: ADMIN_KEY });
+
+    expect(JSON.stringify(login.body)).not.toContain(ADMIN_KEY);
+    expect(login.headers["set-cookie"]?.join(" ") ?? "").not.toContain(ADMIN_KEY);
+  });
+
+  it("marca o cookie de sessão como httpOnly", async () => {
+    const agent = request.agent(app);
+    const login = await agent.post("/api/admin/login").send({ password: ADMIN_KEY });
+
+    const cookies = login.headers["set-cookie"]?.join(" ") ?? "";
+    expect(cookies).toMatch(/HttpOnly/i);
+  });
+
+  it("o logout encerra a sessão", async () => {
+    const agent = request.agent(app);
+    await agent.post("/api/admin/login").send({ password: ADMIN_KEY });
+
+    const out = await agent.post("/api/admin/logout");
+    expect(out.status).toBe(200);
+
+    const sess = await agent.get("/api/admin/session");
+    expect(sess.body.authenticated).toBe(false);
+  });
+});
+
+describe("GET /api/contact", () => {
+  it("retorna 401 sem sessão", async () => {
     const res = await request(app).get("/api/contact");
 
     expect(res.status).toBe(401);
@@ -64,16 +118,25 @@ describe("GET /api/contact", () => {
     expect(mockStorage.getAllContactForms).not.toHaveBeenCalled();
   });
 
-  it("returns 401 with a wrong bearer token", async () => {
+  it("retorna 401 com o header Authorization antigo — o bearer não vale mais", async () => {
     const res = await request(app)
       .get("/api/contact")
-      .set("Authorization", "Bearer wrong-key");
+      .set("Authorization", `Bearer ${ADMIN_KEY}`);
 
     expect(res.status).toBe(401);
     expect(mockStorage.getAllContactForms).not.toHaveBeenCalled();
   });
 
-  it("returns the stored forms with a valid bearer token", async () => {
+  it("retorna 401 com cookie de sessão forjado", async () => {
+    const res = await request(app)
+      .get("/api/contact")
+      .set("Cookie", "nf.sid=s%3Aforjado.assinatura-invalida");
+
+    expect(res.status).toBe(401);
+    expect(mockStorage.getAllContactForms).not.toHaveBeenCalled();
+  });
+
+  it("retorna os formulários para uma sessão autenticada", async () => {
     const forms = [
       {
         id: 1,
@@ -87,21 +150,23 @@ describe("GET /api/contact", () => {
     ];
     mockStorage.getAllContactForms.mockResolvedValue(forms);
 
-    const res = await request(app)
-      .get("/api/contact")
-      .set("Authorization", `Bearer ${ADMIN_KEY}`);
+    const agent = request.agent(app);
+    await agent.post("/api/admin/login").send({ password: ADMIN_KEY });
+
+    const res = await agent.get("/api/contact");
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual(forms);
     expect(mockStorage.getAllContactForms).toHaveBeenCalledOnce();
   });
 
-  it("returns 500 when the storage fails", async () => {
+  it("retorna 500 quando o storage falha", async () => {
     mockStorage.getAllContactForms.mockRejectedValue(new Error("db down"));
 
-    const res = await request(app)
-      .get("/api/contact")
-      .set("Authorization", `Bearer ${ADMIN_KEY}`);
+    const agent = request.agent(app);
+    await agent.post("/api/admin/login").send({ password: ADMIN_KEY });
+
+    const res = await agent.get("/api/contact");
 
     expect(res.status).toBe(500);
     expect(res.body.success).toBe(false);

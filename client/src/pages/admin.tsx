@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -30,50 +30,82 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
-  
-  // Simple authentication
-  const handleLogin = (e: React.FormEvent) => {
+  const [isCheckingSession, setIsCheckingSession] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // A senha vai para o servidor e é comparada lá. O cliente nunca conhece o
+  // segredo: antes ele estava escrito neste arquivo, e portanto no bundle
+  // entregue a qualquer visitante.
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simple password check - in production, this should be more secure
-    if (password === "admin123") {
-      setIsAuthenticated(true);
-      setAuthError("");
-      localStorage.setItem("adminToken", "admin123");
-    } else {
-      setAuthError("Senha incorreta");
+    setIsSubmitting(true);
+    setAuthError("");
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ password }),
+      });
+      if (response.ok) {
+        setIsAuthenticated(true);
+        setPassword("");
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setAuthError(data.message || "Senha incorreta");
+      }
+    } catch {
+      setAuthError("Não foi possível contatar o servidor");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  // Check for existing token on load
-  useState(() => {
-    const token = localStorage.getItem("adminToken");
-    if (token === "admin123") {
-      setIsAuthenticated(true);
-    }
-  });
+  // Ao recarregar, quem responde se há sessão é o servidor, lendo o cookie
+  // httpOnly. Antes isto era um localStorage que qualquer um podia escrever
+  // pelo DevTools para entrar no painel.
+  useEffect(() => {
+    let active = true;
+    fetch('/api/admin/session', { credentials: 'include' })
+      .then((r) => r.json())
+      .then((data) => {
+        if (active) setIsAuthenticated(data.authenticated === true);
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (active) setIsCheckingSession(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await fetch('/api/admin/logout', { method: 'POST', credentials: 'include' }).catch(() => {});
     setIsAuthenticated(false);
-    localStorage.removeItem("adminToken");
     setPassword("");
+    queryClient.removeQueries({ queryKey: ['/api/contact'] });
   };
-  
-  // Buscar formulários de contato com token de autenticação
+
+  // O cookie de sessão vai junto por causa de credentials: 'include'. Não há
+  // header Authorization porque não há segredo do lado do cliente.
   const { data: contactForms, isLoading, isError, refetch } = useQuery<ContactForm[]>({
     queryKey: ['/api/contact'],
     enabled: isAuthenticated,
     queryFn: async () => {
       const response = await fetch('/api/contact', {
-        headers: {
-          'Authorization': `Bearer admin123`,
-          'Content-Type': 'application/json',
-        },
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
       });
-      
+
+      if (response.status === 401) {
+        setIsAuthenticated(false);
+        throw new Error('Sessão expirada');
+      }
       if (!response.ok) {
         throw new Error('Failed to fetch contact forms');
       }
-      
+
       return response.json();
     },
   });

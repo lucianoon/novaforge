@@ -5,10 +5,20 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import cors from "cors";
 
+if (process.env.NODE_ENV === 'production' && !process.env.SESSION_SECRET) {
+  throw new Error(
+    'SESSION_SECRET é obrigatória em produção: sem ela a chave da sessão é ' +
+    'aleatória por processo e todo restart desloga o admin.',
+  );
+}
+
 const app = express();
 
-// Enable trust proxy for rate limiting to work correctly in Replit
-app.set('trust proxy', true);
+// `true` confia na cadeia X-Forwarded-For inteira, e esse header é escrito pelo
+// cliente: req.ip passa a ser controlado por quem chama, e todo rate limit vira
+// decorativo. O número diz quantos proxies existem de fato à frente da app —
+// ajuste se houver mais de um salto.
+app.set('trust proxy', 1);
 
 // Security headers with Helmet
 app.use(helmet({
@@ -46,10 +56,10 @@ const limiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
-  // Custom key generator for Replit environment
-  keyGenerator: (req) => {
-    return req.ip + (req.get('X-Forwarded-For') || '');
-  },
+  // Sem keyGenerator customizado: o anterior concatenava X-Forwarded-For, um
+  // header do cliente, então bastava variá-lo a cada requisição para ganhar um
+  // bucket novo e furar o limite. O padrão da biblioteca usa req.ip, agora
+  // confiável por causa do `trust proxy` fixo acima.
   skip: (req) => {
     // Skip rate limiting for development assets and health checks
     if (process.env.NODE_ENV !== 'production') {

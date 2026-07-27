@@ -1,5 +1,8 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
+import crypto from "crypto";
+import session from "express-session";
+import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
 import { insertContactFormSchema } from "@shared/schema";
 import { z } from "zod";
@@ -7,28 +10,113 @@ import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { body, validationResult } from "express-validator";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // API routes
-  
-  // Simple authentication middleware for admin routes
-  const requireAuth = (req: Request, res: Response, next: NextFunction) => {
-    const authHeader = req.headers.authorization;
-    const adminKey = process.env.ADMIN_KEY;
+declare module "express-session" {
+  interface SessionData {
+    isAdmin?: boolean;
+  }
+}
 
+/**
+ * Compara dois segredos sem vazar informação pelo tempo de execução.
+ *
+ * O `!==` de string do JavaScript retorna no primeiro byte diferente, então o
+ * tempo de resposta revela quantos caracteres iniciais estavam certos. O hash
+ * iguala os comprimentos antes da comparação, para o tamanho da senha também
+ * não vazar.
+ */
+function secretsMatch(a: string, b: string): boolean {
+  const ha = crypto.createHash("sha256").update(a, "utf8").digest();
+  const hb = crypto.createHash("sha256").update(b, "utf8").digest();
+  return crypto.timingSafeEqual(ha, hb);
+}
+
+export async function registerRoutes(app: Express): Promise<Server> {
+  // A sessão fica junto das rotas que dependem dela: `requireAuth` só funciona
+  // se este middleware tiver rodado antes, e manter os dois no mesmo arquivo
+  // impede que a proteção seja registrada sem o seu pré-requisito.
+  //
+  // Sem SESSION_SECRET a chave é aleatória por processo: em desenvolvimento
+  // funciona, e em produção um restart derruba as sessões — por isso a variável
+  // é obrigatória fora de desenvolvimento (ver server/index.ts).
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET || crypto.randomBytes(32).toString("hex"),
+      name: "nf.sid",
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        httpOnly: true, // inacessível a JavaScript: XSS não consegue ler o cookie
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 8 * 60 * 60 * 1000, // 8 horas
+      },
+    }),
+  );
+
+  // Endpoint de senha precisa de limite próprio: sem ele, o campo de login é um
+  // oráculo para força bruta. Sem keyGenerator customizado de propósito — o
+  // padrão usa req.ip, que é confiável porque `trust proxy` está fixo em 1.
+  const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 10,
+    skipSuccessfulRequests: true,
+    message: {
+      success: false,
+      message: "Muitas tentativas de login. Tente novamente em alguns minutos.",
+    },
+  });
+
+  // A senha é verificada aqui, no servidor. Antes a checagem vivia no cliente
+  // (`if (password === "admin123")`), o que significa que o segredo ia no bundle
+  // servido a todo visitante — e o painel era contornável só escrevendo no
+  // localStorage pelo DevTools.
+  app.post("/api/admin/login", loginLimiter, (req: Request, res: Response) => {
+    const adminKey = process.env.ADMIN_KEY;
     if (!adminKey) {
       return res.status(500).json({
         success: false,
-        message: "Configuração de autenticação ausente"
+        message: "Configuração de autenticação ausente",
       });
     }
-    
-    if (!authHeader || authHeader !== `Bearer ${adminKey}`) {
-      return res.status(401).json({ 
-        success: false, 
-        message: "Acesso não autorizado" 
-      });
+
+    const password = typeof req.body?.password === "string" ? req.body.password : "";
+    if (!password || !secretsMatch(password, adminKey)) {
+      return res.status(401).json({ success: false, message: "Senha incorreta" });
     }
-    next();
+
+    // Novo id de sessão após autenticar, para não aceitar um id que o cliente
+    // já trouxesse (session fixation).
+    req.session.regenerate((err) => {
+      if (err) {
+        console.error("Erro ao regenerar a sessão:", err);
+        return res.status(500).json({ success: false, message: "Erro ao autenticar" });
+      }
+      req.session.isAdmin = true;
+      res.status(200).json({ success: true });
+    });
+  });
+
+  app.post("/api/admin/logout", (req: Request, res: Response) => {
+    req.session.destroy(() => {
+      res.clearCookie("nf.sid");
+      res.status(200).json({ success: true });
+    });
+  });
+
+  // Permite ao cliente restaurar o estado da tela ao recarregar sem guardar
+  // nada localmente — a resposta vem do cookie httpOnly, não do localStorage.
+  app.get("/api/admin/session", (req: Request, res: Response) => {
+    res.status(200).json({ authenticated: req.session?.isAdmin === true });
+  });
+
+  const requireAuth = (req: Request, res: Response, next: NextFunction) => {
+    if (req.session?.isAdmin === true) {
+      return next();
+    }
+    return res.status(401).json({
+      success: false,
+      message: "Acesso não autorizado",
+    });
   };
 
   // Rota para listar todos os formulários de contato (protegida)
