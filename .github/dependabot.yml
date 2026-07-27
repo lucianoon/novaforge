@@ -1,0 +1,55 @@
+version: 2
+
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # 94 dependências: um PR único com tudo é irrevisável, e uma quebra isolada
+    # bloquearia o lote inteiro. Os grupos abaixo separam por raio de impacto.
+    open-pull-requests-limit: 10
+    ignore:
+      # Cada um destes majors é migração de código, não atualização de versão:
+      # React 18→19, Express 4→5, Tailwind 3→4 e Zod 3→4 mudam API pública.
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "express"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "zod"
+        update-types: ["version-update:semver-major"]
+      # Pacotes 0.x não têm garantia de compatibilidade em minor — no drizzle,
+      # 0.39→0.40 pode alterar schema e migrations. Subir deliberadamente.
+      - dependency-name: "drizzle-orm"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+      - dependency-name: "drizzle-kit"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+    # A ordem importa: o Dependabot usa o primeiro grupo que casar, então os
+    # específicos vêm antes dos coletores.
+    groups:
+      radix-ui:
+        # 27 primitivas do shadcn/ui, liberadas em conjunto. Juntas num PR só.
+        patterns: ["@radix-ui/*"]
+      types:
+        patterns: ["@types/*"]
+      dev-tooling:
+        dependency-type: "development"
+        patterns: ["*"]
+      production:
+        dependency-type: "production"
+        patterns: ["*"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns: ["*"]
